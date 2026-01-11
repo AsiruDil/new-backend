@@ -6,8 +6,9 @@ import userRouter from './routes/userRoute.js';
 import jwt from "jsonwebtoken"
 import orderRouter from './routes/orderRoute.js';
 import commentRouter from './routes/commentRoute.js';
-
+import cors from 'cors';
 const app = express()
+app.use(cors())
 app.use(bodyParser.json());
 
 app.use((req,res,next)=>{
@@ -43,10 +44,10 @@ mongoose.connect("mongodb+srv://admin:123@cluster0.3gqyjrw.mongodb.net/?appName=
 })
 
 
-app.use("/product",productRouter)
-app.use("/users",userRouter)
-app.use("/orders",orderRouter)
-app.use("/comments",commentRouter)
+app.use("/api/product",productRouter)
+app.use("/api/users",userRouter)
+app.use("/api/orders",orderRouter)
+app.use("/api/comments",commentRouter)
 
 
 

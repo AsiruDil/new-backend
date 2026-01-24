@@ -1,6 +1,7 @@
 import User from "../models/user.js";
 import bcrypt from 'bcrypt';
-import jwt from "jsonwebtoken"
+import jwt from "jsonwebtoken";
+import dotenv from 'dotenv';
 
 export function createUser(req,res){
     if(req.body.role=="admin"){
@@ -62,12 +63,13 @@ export function loginUser(req,res){
                     img:user.img
 
                 },
-                "cbc-batch-five#2025"
+               process.env.JWT_KEY
             )
 
                 res.json({
                     message:"login successfull",
-                    token:token
+                    token:token,
+                    type:user.role
                     
                 })
             }else{
